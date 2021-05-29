@@ -17,7 +17,7 @@ public class MultiplicationTableArrayApp {
             startNumber = temp;
         }
 
-        MultiplicationTable multiplicationTableArray = new MultiplicationTable(startNumber, finishNumber);
-        multiplicationTableArray.print();
+        MultiplicationTable multiplicationTable = new MultiplicationTable(startNumber, finishNumber);
+        multiplicationTable.print();
     }
 }
