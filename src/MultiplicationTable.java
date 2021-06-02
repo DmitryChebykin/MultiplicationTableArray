@@ -3,9 +3,9 @@ public class MultiplicationTable {
     private int endMultiplier;
     private int[][] numbers;
 
-    public MultiplicationTable(int startNumber, int finishNumber) {
-        startMultiplier = startNumber;
-        endMultiplier = finishNumber;
+    public MultiplicationTable(int startMultiplier, int endMultiplier) {
+        this.startMultiplier = startMultiplier;
+        this.endMultiplier = endMultiplier;
         calculateNumbers();
     }
 
@@ -46,7 +46,7 @@ public class MultiplicationTable {
     public void print() {
         System.out.println("Вывод массива в виде таблицы умножения:");
 
-        int maxAbsTableValue = (int) Math.max((numbers[0][0]), numbers[numbers.length - 1][numbers.length - 1]);
+        int maxAbsTableValue = Math.max(numbers[0][0], numbers[numbers.length - 1][numbers.length - 1]);
         int tableMinusStampLength = isOnlyStartTableBorderNumberNegative() ? 1 : 0;
         int maxTableValueOutputLength = tableMinusStampLength + (int) (Math.log10(maxAbsTableValue) + 1) + 1; // console output length = minus sign + all digits + whitespace before
 
@@ -54,7 +54,7 @@ public class MultiplicationTable {
 
         int rowMinusStampLength = isStartTableBorderNumberNegative() ? 1 : 0;
         int maxStartRowValueOutputLength = (int) (Math.log10(Math.max(Math.sqrt(numbers[0][0]), Math.sqrt(numbers[numbers.length - 1][numbers.length - 1]))) + 1) + rowMinusStampLength;
-        String rowStartFormatTemplate = "%" + maxStartRowValueOutputLength + "d";
+        String rowStartFormatTemplate = "%" + maxStartRowValueOutputLength + "d" + "|";
 
         printHeader(maxStartRowValueOutputLength, maxTableValueOutputLength, tableOutputFormatTemplate);
 
@@ -62,13 +62,12 @@ public class MultiplicationTable {
         int startNumber = isStartTableBorderNumberNegative() ? -(int) Math.sqrt(numbers[0][0]) : (int) Math.sqrt(numbers[0][0]);
 
         for (int i = 0; i < rowsQuantity; i++) {
-            System.out.printf(rowStartFormatTemplate + "|", startNumber + i);
+            System.out.printf(rowStartFormatTemplate, startNumber + i);
 
             for (int j = 0; j < rowsQuantity; j++) {
-                if (j != rowsQuantity - 1) {
-                    System.out.printf(tableOutputFormatTemplate, numbers[i][j]);
-                } else {
-                    System.out.printf(tableOutputFormatTemplate, numbers[i][j]);
+                System.out.printf(tableOutputFormatTemplate, numbers[i][j]);
+
+                if (j == rowsQuantity - 1) {
                     System.out.println();
                 }
             }
