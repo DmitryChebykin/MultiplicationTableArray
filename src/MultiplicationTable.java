@@ -66,11 +66,9 @@ public class MultiplicationTable {
 
             for (int j = 0; j < rowsQuantity; j++) {
                 System.out.printf(tableOutputFormatTemplate, numbers[i][j]);
-
-                if (j == rowsQuantity - 1) {
-                    System.out.println();
-                }
             }
+
+            System.out.println();
         }
     }
 
